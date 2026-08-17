@@ -30,7 +30,7 @@ def my_predict(X_test, train_data, y_train, k, sorting_function,features):
         class_type = k_classes(neighbours, y_train) #find the classes of all k neighbours
         prediction = winning_class(class_type)      #predicts the point's class with majority class rule
         predict_all.append(prediction)
-    return predict_all
+    return predict_all, class_type, neighbours
 
 def my_score(y_test, my_predictions):
     actual_class=list(y_test)
@@ -69,7 +69,7 @@ def main():
     features=X_train.columns
 
 #predict function
-    my_predictions=my_predict(X_test, train_data, y_train, k, sorting_function, features)
+    my_predictions, class_type, neighbours=my_predict(X_test, train_data, y_train, k, sorting_function, features)
     classes=set(y_train)
     for c in classes:
         print(c,": ",my_predictions.count(c))  #prints the final count of classified points

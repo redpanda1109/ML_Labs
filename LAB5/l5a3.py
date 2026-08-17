@@ -1,9 +1,4 @@
-# NO CONDITION = 6771
-# CONDITION = 2401
-# train -> 4739/1681
-# test -> 2032/720
-
-
+#4500 rows -> 2000 & 2500
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split 

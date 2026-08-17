@@ -7,30 +7,15 @@ from l5a7 import my_fit, my_predict, my_score
 from sklearn.neighbors import KNeighborsClassifier 
 from l5a2 import wk_classes, winning_class_weighted
 
-def my_knn(X_train, X_test, y_train, y_test, k, sorting_function):
-    train_data, y_train = my_fit(X_train, y_train)
-    features=X_train.columns
-    predictions = my_predict(X_test,train_data,y_train,k,sorting_function, features)
+def my_knn(X_test, y_train, y_test, k, sorting_function, train_data, features):
+    predictions, class_types, neighbours = my_predict(X_test,train_data,y_train,k,sorting_function, features)  #(_) indicates unwanted parameter from the func
     accuracy = my_score(y_test, predictions)
-    return accuracy
+    return accuracy, class_types, neighbours
 
-def my_wknn(X_train, X_test, y_train, y_test, k, sorting_function):
-    train_data, y_train = my_fit(X_train, y_train)
-    features=features=X_train.columns
-    test_data=[]
-    # each id gives feature vector
-    for i in range(len(X_test)):
-        s=[]
-        for feature in features:
-            s.append(X_test.iloc[i][feature])
-        test_data.append(s)
+def my_wknn(y_test, class_types, neighbours, test_data, train_data):
     predict_all=[]
     for data in test_data:
-        dist=distance_train(train_data, data)  #all dist with train data & point
-        sorted_dist=sorting_function(dist)      #the distances get sorted with tie breaker
-        neighbours=k_neighbour(sorted_dist,k)   #take k neighbours
-        class_type = wk_classes(neighbours, y_train) #find the classes of all k neighbours
-        prediction = winning_class_weighted(class_type, neighbours)      #predicts the point's class with majority class rule
+        prediction = winning_class_weighted(class_types, neighbours)      #predicts the point's class with majority class rule
         predict_all.append(prediction)
     accuracy=my_score(y_test, predict_all)
     return accuracy
@@ -75,13 +60,24 @@ knn_accuracy=[]
 wknn_accuracy=[]
 package_accuracy=[]
 
-for k in range(5,16):
-    acc1=my_knn(X_train, X_test, y_train, y_test, k, sorting_function)
+train_data, y_train = my_fit(X_train, y_train)
+features=X_train.columns
+test_data=[]
+    # each id gives feature vector
+for i in range(len(X_test)):
+    s=[]
+    for feature in features:
+        s.append(X_test.iloc[i][feature])
+    test_data.append(s)
+
+
+for k in range(10,21):
+    acc1, class_types, neighbours=my_knn(X_test, y_train, y_test, k, sorting_function, train_data, features)
     knn_accuracy.append(acc1)
-    acc2=my_wknn(X_train, X_test, y_train, y_test, k, sorting_function)
+    acc2=my_wknn(y_test, class_types, neighbours, test_data, train_data)
     wknn_accuracy.append(acc2)
     acc3=package_knn(X_train, X_test, y_train, y_test, k)
     package_accuracy.append(acc3)
 
-n=list(range(5,10))
+n=list(range(10,21))
 plot_accuracy(n,knn_accuracy,wknn_accuracy,package_accuracy)
