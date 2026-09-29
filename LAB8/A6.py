@@ -4,7 +4,7 @@ import numpy as np
 def sigmoid(x):
     return 1/(1+np.exp(-x))
 
-def perceptron_learning(inputs, target, epochs, learning_rate):
+def perceptron_learning(inputs, target, weights, bias, epochs, learning_rate):
     for epoch in range(epochs):
         for i in range(len(inputs)):
             total = np.dot(inputs[i], weights) + bias
@@ -25,7 +25,7 @@ def main():
     bias = 0.1
     learning_rate = 0.01
     epochs = 1000
-    weights, bias = perceptron_learning(inputs, target, epochs, learning_rate)
+    weights, bias = perceptron_learning(inputs, target, weights, bias, epochs, learning_rate)
     
     print("Final Weights:", weights)
     print("Final Bias:", bias)
