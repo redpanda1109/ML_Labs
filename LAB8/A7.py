@@ -24,9 +24,9 @@ def main():
         print(p["Customer"][i], "Actual:", target[i], "Prediction:", prediction)
 
     print("Matrix Pseudo Inverse")
-    X = np.column_stack((np.ones(len(inputs)), inputs))
-    pseudo_inverse = np.linalg.pinv(X)
-    weights = np.dot(pseudo_inverse, target)
+    X = np.column_stack((np.ones(len(inputs)), inputs))  #its adding a column of 1s for the bias...column_stack does this func
+    pseudo_inverse = np.linalg.pinv(X)  #X is the new input after adding the extra column
+    weights = np.dot(pseudo_inverse, target)  # it gives the optimal weights...x^-1.y
     for i in range(len(X)):
         output = np.dot(X[i], weights)
         if output >= 0.5:

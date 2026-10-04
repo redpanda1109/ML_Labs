@@ -22,8 +22,8 @@ def train_network(inputs, target, weights, biases, learning_rate, max_epochs):
             o1 = activation_unit(o1_total, "sigmoid")
             o2 = activation_unit(o2_total, "sigmoid")
 
-            error1 = target[i][0] #for o1......for error calculation
-            error2 = target[i][1] #for o2
+            error1 = target[i][0] - o1 #for o1......for error calculation
+            error2 = target[i][1] - o2 #for o2
             errors.append(error1)
             errors.append(error2)
 

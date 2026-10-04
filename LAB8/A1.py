@@ -40,7 +40,7 @@ def comparator_unit(truth, output):
 
 def main():
     inputs=[[0,0],[0,1],[1,0],[1,1]]
-    weights=[-1,1,1]  #weights for AND gate
+    weights=[-1, 1,1]  #weights for AND gate
     target=[0,0,0,1]  #target for AND gate
     for i in range(len(inputs)):
         total=summation_unit(inputs[i],weights)

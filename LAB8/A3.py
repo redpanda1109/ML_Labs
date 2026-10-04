@@ -18,16 +18,17 @@ def train_perceptron(input, target, weights, learning_rate, epochs, activation_f
             output = activation_unit(total, activation_function)
             error = comparator_unit(target[i], output)
             
-            weights[0] = weights[0] + learning_rate * error  #update the bias
-            for j in range(len(input[i])):
-                weights[j + 1] = weights[j + 1] + learning_rate * error * input[i][j]  #update the weights
-        errors=[]
+            weights[0] = weights[0] + learning_rate*error  #update the bias
+            for j in range(1,len(weights)):
+                weights[j] = weights[j] + learning_rate*error*input[i][j-1]  #update the weights
+        
+        errors=[]     #i get the errors or each input...put them in an array
         for i in range(len(input)):
             total = summation_unit(input[i], weights)
             output = activation_unit(total, activation_function)
             error = comparator_unit(target[i], output)
             errors.append(error)
-        sse=calculate_error(errors)
+        sse=calculate_error(errors)     #calculate the sse for that epoch using the input errors
         epoch_errors.append(sse)
         if sse <= 0.002:
             break

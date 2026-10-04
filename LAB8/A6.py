@@ -12,16 +12,16 @@ def perceptron_learning(inputs, target, weights, bias, epochs, learning_rate):
             error = target[i] - output
 
             # Update weights and bias
-            weights += learning_rate * error * inputs[i]
+            weights += learning_rate * error * inputs[i]    #we are not doingweight[i] cause weight and input[i] are vectors so the updation hppens accordingly 
             bias += learning_rate * error
     return weights, bias
 
 def main():
     p=pd.read_csv('A6_customer_data.csv')
     inputs=p[["Candies", "Mangoes", "Milk Packets", "Payment"]].values
-    target=p["High Value Tx?"].map({"Yes": 1, "No": 0}).values
+    target=p["High Value Tx?"].map({"Yes": 1, "No": 0}).values 
 
-    weights = np.array([0.1, 0.1, 0.1, 0.1])
+    weights = [0.1, 0.1, 0.1, 0.1]
     bias = 0.1
     learning_rate = 0.01
     epochs = 1000
@@ -34,9 +34,9 @@ def main():
         total = np.dot(inputs[i], weights) + bias
         output = sigmoid(total)
         if output >= 0.5:
-            prediction = "Yes"
+            prediction = 1
         else:
-            prediction = "No"
+            prediction = 0
         print(f"Input: {inputs[i]}, Actual: {target[i]}, Prediction: {prediction}")
 
 
