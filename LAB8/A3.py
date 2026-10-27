@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from A1 import summation_unit, activation_unit, comparator_unit
 
+# do the same thing as in A2 
+
 def calculate_error(errors):
     sse=0
     for i in errors:
@@ -37,9 +39,10 @@ def train_perceptron(input, target, weights, learning_rate, epochs, activation_f
 def main():
     inputs=[[0,0],[0,1],[1,0],[1,1]]
     target1=[0,0,0,1]  #target for AND gate
-    target2=[-1,-1,-1,1]  #target for bipolar AND gate
+    target2=[-1,-1,-1,1]  #target for bipolar AND gate - cause in bipolar th eoutput shd be -1 or 1
     activation_functions =["bipolar step", "sigmoid", "relu"]
 
+    #to compare the diff activation functions
     for i in range(len(activation_functions)):
         weights=[10,0.2, -0.75]  #weights for AND gate
         learning_rate = 0.05

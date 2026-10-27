@@ -1,5 +1,7 @@
 import numpy as np
 
+# copy A1 here and just change AND to XOR
+
 def summation_unit(input,weights):
     sum=weights[0]
     for i in range(len(input)):

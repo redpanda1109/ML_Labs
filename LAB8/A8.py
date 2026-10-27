@@ -3,8 +3,8 @@ from A1 import activation_unit
 
 def train_network(inputs, target, weights, biases, learning_rate, max_epochs):
     # Initial weights
-    v11, v12, v21, v22, w1, w2 = weights
-    bh1, bh2, bo = biases
+    v11, v12, v21, v22, w1, w2 = weights    # for each element in list
+    bh1, bh2, bo = biases   #for each element in list
 
     for epoch in range(1, max_epochs + 1):
         errors = []
@@ -20,7 +20,7 @@ def train_network(inputs, target, weights, biases, learning_rate, max_epochs):
             o_1 = h1 * w1 + h2 * w2 + bo
             output = activation_unit(o_1, "sigmoid")
             # Error
-            error = target[i] - output
+            error = target[i] - output  #y-y_cap
             errors.append(error)
 
             # Back propagation

@@ -30,10 +30,10 @@ def main():
     for i in range(len(X)):
         output = np.dot(X[i], weights)
         if output >= 0.5:
-            prediction = 1
+            prediction_m = 1
         else:
-            prediction = 0
-        print(p["Customer"][i],"Actual:", target[i],"Prediction:", prediction)
+            prediction_m = 0
+        print(p["Customer"][i],"Actual:", target[i],"Prediction:", prediction_m)
 
 if __name__ == "__main__":
     main()

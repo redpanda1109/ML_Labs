@@ -6,6 +6,9 @@ from sklearn.linear_model import Perceptron
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score
 
+#randomizedSearchCV tries all the styles of hyperparameters and chooses the best one for the model
+
+# adjust the project data to work with
 def data_preprocessing(p):
     mode_columns = ["gender","education","corpus"]
     for column in mode_columns:
@@ -43,6 +46,7 @@ def mlp_random_search(X_train, Y_train):
 
 def main():
     p=pd.read_csv('train_labels.csv')
+    # data preprocessing and splitting
     X, Y = data_preprocessing(p)
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=42, stratify=Y)
     #normalize the data

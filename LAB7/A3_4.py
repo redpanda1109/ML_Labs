@@ -48,6 +48,7 @@ def calc_info_gain(X, Y, column):
     weighted = 0
     values = X[column].unique()
     for value in values:
+        # im taking one unique value in the column then telling all the final labels for that value
         value_Y = Y[X[column] == value]     # for a given feature find the prob and calculate the entropy for that subset of data
         prob = len(value_Y) / len(Y)
         entropy = calculate_entropy(value_Y)
@@ -59,7 +60,7 @@ def best_feature(X, Y):
     #for each feature and the one with max info gain is the best one
     info_gains = {}
     for column in X.columns:
-        info_gains[column] = calc_info_gain(X, Y, column)
+        info_gains[column] = calc_info_gain(X, Y, column)   # uses dict to store the info gain for each feature
     best=max(info_gains, key=info_gains.get)
     return best, info_gains[best]
 

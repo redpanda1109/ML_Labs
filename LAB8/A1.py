@@ -34,7 +34,7 @@ def activation_unit(total, activation_function):
         print("Activation function not supported")
 
 def comparator_unit(truth, output):
-    error=truth-output
+    error=truth-output #y-y_cap
     return error
 
 

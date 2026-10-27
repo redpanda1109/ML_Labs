@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from A1 import summation_unit, activation_unit, comparator_unit
 
 def calculate_error(errors):
+    # use sum of squared errors for error calculation - cause its simple
     sse=0
     for i in errors:
         sse += i**2
@@ -11,18 +12,20 @@ def calculate_error(errors):
 
 def train_perceptron(input, target, weights, learning_rate, epochs, activation_function):
     count=0
-    epoch_errors=[]
+    epoch_errors=[]     # stores the sse fro each epoch
     for epoch in range(1, epochs + 1):
         count+=1
-        for i in range(len(input)):
+        for i in range(len(input)):     #train each input
+            # find the error
             total = summation_unit(input[i], weights)
             output = activation_unit(total, activation_function)
             error = comparator_unit(target[i], output)
             
             weights[0] = weights[0] + learning_rate*error  #update the bias
             for j in range(1,len(weights)):
-                weights[j] = weights[j] + learning_rate*error*input[i][j-1]  #update the weights
-                    
+                weights[j] = weights[j] + learning_rate*error*input[i][j-1]  #update the weights using perceptron learning rule
+
+        # final error calculation after training all inputs for that epoch
         errors=[]   #i get the errors or each input...put them in an array
         for i in range(len(input)):
             total = summation_unit(input[i], weights)

@@ -3,7 +3,7 @@ import numpy as np
 
 def calculate_entropy(y):
     #gives all diff y values
-    count=y.value_counts()
+    count=y.value_counts() #how many times each unique value occurs
     entropy=0
     for c in count:
         prob=c/len(y)

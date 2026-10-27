@@ -6,8 +6,8 @@ def sigmoid(x):
 
 def perceptron_learning(inputs, target, weights, bias, epochs, learning_rate):
     for epoch in range(epochs):
-        for i in range(len(inputs)):
-            total = np.dot(inputs[i], weights) + bias
+        for i in range(len(inputs)):    #for every input in the dataset
+            total = np.dot(inputs[i], weights) + bias   #sigma(x1*w1)+bi
             output = sigmoid(total)
             error = target[i] - output
 

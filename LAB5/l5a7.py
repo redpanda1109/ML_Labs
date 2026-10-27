@@ -65,12 +65,12 @@ def main():
     k=int(input("\nEnter the value of k: "))    #choose k value
 
 #fit() function
-    train_data, y_train = my_fit(X_train, y_train)
+    train_data, y_train2 = my_fit(X_train, y_train)
     features=X_train.columns
 
 #predict function
-    my_predictions, class_type, neighbours=my_predict(X_test, train_data, y_train, k, sorting_function, features)
-    classes=set(y_train)
+    my_predictions, class_type, neighbours=my_predict(X_test, train_data, y_train2, k, sorting_function, features)
+    classes=set(y_train2)
     for c in classes:
         print(c,": ",my_predictions.count(c))  #prints the final count of classified points
 

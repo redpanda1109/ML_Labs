@@ -12,7 +12,7 @@ def build_decision_tree(X, Y, min_samples=5, depth=0, max_depth=5):
         return Y.iloc[0]
     # Maximum depth reached
     if depth >= max_depth:
-        return Y.mode()[0]
+        return Y.mode()[0]  #choose the most cmmon class
     # No features left
     if len(X.columns) == 0:
         return Y.mode()[0]
@@ -20,6 +20,7 @@ def build_decision_tree(X, Y, min_samples=5, depth=0, max_depth=5):
     if len(Y) < min_samples:
         return Y.mode()[0]
 
+    # getting the best feature to split on
     gains = {}
     for column in X.columns:
         gains[column] = calc_info_gain(X, Y, column)    #gives best feature per recursion

@@ -55,6 +55,7 @@ def main():
     X_test = scaler.transform(X_test)
 
     results=[]
+    # tuple for me to iterate
     classifiers = [("SVM", svm_classify), ("Decision Tree", decision_tree_classify), ("Random Forest", random_forest_classify),
         ("CatBoost", catboost_classify), ("AdaBoost", adaboost_classify), ("XGBoost", xgboost_classify), ("Naive Bayes", naive_bayes_classify)]
     for name, classify in classifiers:

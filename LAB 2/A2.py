@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 # this is a binary classification model where we can use logistic regression algorithm to determine rich/poor
+# why logistic regression - it will give a numeric probability output
 
 def matrixes(p):
     X=p[['Candies (#)', 'Mangoes (Kg)','Milk Packets (#)']]
@@ -14,10 +15,10 @@ def categorize(p, X, Y):
     model = LogisticRegression()
     # the training of the model is done using the fit method with X and Y as inputs
     model.fit(X, Y)
-    p['Customer_Type'] = model.predict(X)
+    p['Customer_Type'] = model.predict(X) #prediction of the customer from the trained model
 
 p=pd.read_excel('Lab Session Data.xlsx', sheet_name='Purchase data')    
 X, Y = matrixes(p)
-Y = np.where(p['Payment (Rs)'] > 200, 'RICH', 'POOR')
+Y = np.where(p['Payment (Rs)'] > 200, 'RICH', 'POOR') #np.where(cond, if true, if false)
 categorize(p, X, Y)
 print(p[['Customer', 'Payment (Rs)', 'Customer_Type']])

@@ -5,6 +5,7 @@ def main():
     target_and=[0, 0, 0, 1] #for AND gate
     target_xor=[0, 1, 1, 0] #for XOR gate
     and_mlp= MLPClassifier(hidden_layer_sizes=(2,),activation="logistic",solver="lbfgs",max_iter=1000,random_state=1)
+    # 1hidden layer with 2 neurons, logistic activation func, optimization algorithm for weights, , to control randomness
     and_mlp.fit(inputs, target_and)
     and_predictions = and_mlp.predict(inputs)
 
